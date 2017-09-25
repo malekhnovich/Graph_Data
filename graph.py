@@ -82,8 +82,11 @@ class AdjacencyMatrixGraph(Graph):
 
 #graph of 4 nodes
 g = AdjacencyMatrixGraph(4)
+#setting up the edge between vertice ZERO & vertice ONE
 g.add_edge(0,1)
+#setting up the edge between vertice ONE & vertice TWO
 g.add_edge(0,2)
+##setting up the edge between vertice TWO & vertice THREE
 g.add_edge(2,3)
 
 for i in range(4):
@@ -95,3 +98,45 @@ for i in range(4):
 for i in range(4):
     for j in g.get_adjacent_vertices(i):
         print("Edge weight: ",i," ",j," weight: ",g.get_edge_weight(i,j))
+
+
+    #NODE IN A GRAPH
+
+    class Node:
+        def __init__(self,vertexId):
+            #each node has a vertex id
+            self.vertexId = vertexId
+            self.adjacency_set = set()
+
+        def add_edge(self,v):
+            if self.vertexId ==v:
+                raise ValueError("The vertex %d cannot be adjacent to itself" %v)
+
+            self.adjacency_set.add(v)
+
+        def get_adjacent_vertices(self):
+            return sorted(self.adjacency_set)
+
+
+    #graph represented as an adjacency set
+        def __init__(self,numVertices,directed = False):
+            super(AdjacencyMatrixGraph,self).__init__(numVertices, directed)
+
+            self.vertex_list = []
+            for i in range(numVertices):
+                self.vertex_list.append(Node(i))
+
+        def add_edge(self,v1,v2,weight = 1):
+            if v1>= self.numVertices or v2 >= self.numVertices or v1 <0 or v2 <0:
+                raise ValueError("Vertices %d and %d are out of bounds" % (v1,v2))
+
+            if weight!= 1:
+                raise ValueError("An adjacency set cannot represent edge weights")
+
+            self.vertex_list[v2].add_edge(v1)
+
+        def get_adjacent_vertices(self,v):
+            if v < 0 or v >= self.numVertices:
+                raise ValueError("Cannot access vertex %d"%v)
+
+            return self.vertex_list[v].get_adjacent_vertices()
