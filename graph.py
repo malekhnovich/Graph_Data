@@ -140,3 +140,13 @@ for i in range(4):
                 raise ValueError("Cannot access vertex %d"%v)
 
             return self.vertex_list[v].get_adjacent_vertices()
+
+
+        def get_indegree(self,v):
+            if v < 0 or v>=self.numVerticesL
+                raise ValueError("Cannot access vertex %d" %v)
+
+            indegree = 0
+            for i in range(self,numVertices):
+                if v in self.get_adjacent_vertices(i):
+                    indegree = indegree +1
