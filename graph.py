@@ -143,7 +143,7 @@ for i in range(4):
 
 
         def get_indegree(self,v):
-            if v < 0 or v>=self.numVerticesL
+            if v < 0 or v>=self.numVertices:
                 raise ValueError("Cannot access vertex %d" %v)
 
             indegree = 0

@@ -34,5 +34,17 @@ g.add_edge(6,3)
 g.add_edge(3,4)
 g.add_edge(6,8)
 
+def depth_first(graph,visited,current = 0):
+    if visited[current]==1:
+        return
+
+    visited[current]=1
+
+    print("Visit: ",current)
+
+    for vertex in graph.get_adjacent_vertices(current):
+        depth_first(graph,visited,vertex)
 
 
+visited = np.zeros(g.numVertices)
+depth_first(g,visited)
